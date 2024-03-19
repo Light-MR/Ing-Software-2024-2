@@ -73,7 +73,10 @@ def verificar_existencia_pelicula(nombre_pelicula, genero_pelicula, cursor):
 def verificar_existencia_usuario(nombre, ap_pat, ap_mat, email, cursor):
     cursor.execute("SELECT COUNT(*) FROM usuarios WHERE nombre = %s AND apPat = %s AND apMat = %s AND email = %s", (nombre, ap_pat, ap_mat, email))
     row = cursor.fetchone()
-    return row is not None
+    if row is  None :
+        return False
+    else:
+        return True
 
 # Función para verificar si existe una renta para un usuario y una película dados
 def verificar_existencia_renta(id_usuario, id_pelicula, cursor):
@@ -170,6 +173,7 @@ def eliminar_rentas_antiguas():
 def main():
     insertar_registros()
     
+    """
     ap_terminacion = input("Ingrese la terminación del apellido a buscar: ")
     filtrar_usuarios_por_apellido(ap_terminacion)
     
@@ -177,7 +181,7 @@ def main():
     nuevo_genero = input("Ingrese el nuevo género para la película: ")
     cambiar_genero_pelicula(nombre_pelicula, nuevo_genero)
     
-    eliminar_rentas_antiguas()
+    eliminar_rentas_antiguas()"""
 
 if __name__ == "__main__":
     main()
